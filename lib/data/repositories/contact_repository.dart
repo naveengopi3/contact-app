@@ -25,7 +25,7 @@ class ContactRepository {
 
   void editContact(Contact contact){
     final index = _contact.indexWhere((c) => c.id == contact.id,);
-    if(index != 1){
+    if(index != -1){
       _contact[index] = contact;
     }
   }

@@ -9,6 +9,7 @@ part 'contact_state.dart';
 class ContactBloc extends Bloc<ContactEvent, ContactState> {
   final ContactRepository repository;
   ContactBloc(this.repository) : super(ContactState()) {
+    
    on<LoadContacts>((event, emit) {
       final contacts = repository.getContacts();
       emit(state.copyWith(contacts: contacts));

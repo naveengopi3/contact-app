@@ -6,17 +6,35 @@ import 'package:contact_app/presentation/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ContactEditView extends StatelessWidget {
+class ContactEditView extends StatefulWidget {
   final Contact contact;
   const ContactEditView({super.key, required this.contact});
 
   @override
+  State<ContactEditView> createState() => _ContactEditViewState();
+}
+
+class _ContactEditViewState extends State<ContactEditView> {
+  late TextEditingController _nameController;
+  late TextEditingController _phoneController;
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.contact.name);
+    _phoneController = TextEditingController(text: widget.contact.phoneNumber);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController(text: contact.name);
-    final phoneNumberController = TextEditingController(
-      text: contact.phoneNumber,
-    );
-    final formKey = GlobalKey<FormState>();
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -30,12 +48,12 @@ class ContactEditView extends StatelessWidget {
           child: Column(
             children: [
               CustomTextFormFields(
-                controller: nameController,
+                controller: _nameController,
                 hintText: "Name",
               ),
               SizedBox(height: screenHeight * 0.03),
               CustomTextFormFields(
-                controller: phoneNumberController,
+                controller: _phoneController,
                 hintText: "Phone Number",
                 keyboardType: TextInputType.phone,
               ),
@@ -45,13 +63,12 @@ class ContactEditView extends StatelessWidget {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     final updated = Contact(
-                      id: contact.id,
-                      name: nameController.text.trim(),
-                      phoneNumber: phoneNumberController.text.trim(),
+                      id: widget.contact.id,
+                      name: _nameController.text.trim(),
+                      phoneNumber: _phoneController.text.trim(),
                     );
-
-                    context.read<ContactBloc>().add(UpdateContact(updated));
                     Navigator.pop(context);
+                    context.read<ContactBloc>().add(UpdateContact(updated));
                   }
                 },
                 height: 55,

@@ -69,6 +69,7 @@ class HomeView extends StatelessWidget {
           if (contacts.isEmpty) {
             return const Center(child: Text("No contacts yet"));
           }
+
           return ListView.separated(
             separatorBuilder: (context, index) =>
                 SizedBox(height: screenHeight * 0.02),
