@@ -1,16 +1,45 @@
 # contact_app
 
-A new Flutter project.
+Flutter Contact App (Interview Assignment)
 
-## Getting Started
+This is a simple yet complete Contact Management App built using **Flutter** and **BLoC** for state management. The app demonstrates clean architecture and core Flutter concepts including forms, navigation, validation, and dynamic UI updates.
 
-This project is a starting point for a Flutter application.
+## Project Setup
 
-A few resources to get you started if this is your first Flutter project:
+1. **Clone the repository**
+   ```bash
+  - git clone https://github.com/naveengopi3/contact-app.git
+  - cd contact_app
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2.**Install dependencies**
+  -flutter pub get
+  
+3.**Run the app**
+   -flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features Implemented
+
+**Core Functionality**
+- Add new contact (with validation)
+- Edit existing contact
+- Delete contact
+- View all contacts in a list
+- Sort contacts A–Z, Z–A, or Reset
+
+**UI & Architecture**
+- Responsive layout with StatelessWidgets
+- Clean architecture (presentation, application, data layers)
+- Custom text fields and buttons
+
+**BLoC State Management**
+- flutter_bloc to manage contact list and events
+- Events: Add, Edit, Delete, Sort, Reset, Load
+- Reactive UI with BlocBuilder
+
+## Known Limitations
+- Contacts are stored in memory only (cleared on restart)
+- No persistent database or API used
+
+## Author
+Naveen G
+Self-taught Flutter Developer
